@@ -3,8 +3,11 @@
 
 if (file_exists(get_stylesheet_directory() . '/secret.php')) {
 
-    // This file should run once, and then be deleted before the test begins
-    require_once('secret.php');
+    if (!get_option('_assessment_test_setup')) {
+		require_once('secret.php');
+		update_option('_assessment_test_setup', 1);
+	}
+    
 
 }
 
